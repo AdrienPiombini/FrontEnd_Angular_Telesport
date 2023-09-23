@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'd3';
 import { BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { ChartPie } from '../models/ChartPie';
 
 
 @Injectable({
@@ -31,4 +32,5 @@ export class OlympicService {
   getOlympics() {
     return this.olympics$.asObservable();
   }
+
 }

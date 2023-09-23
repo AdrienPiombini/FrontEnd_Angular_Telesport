@@ -1,6 +1,5 @@
-<h2>Olympic games app</h2>
-<hr/>
 
+<hr/>
 <ul>
     <li *ngFor = "let country of olympics$ | async"  (click)="select(country)" >
        {{country.country}}

@@ -6,6 +6,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { ChartOptions } from 'chart.js';
 import { ChartPie } from 'src/app/core/models/ChartPie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
   isDoughnut: boolean = false;
   legendPosition: LegendPosition = LegendPosition.Below;
 
-  constructor(private olympicService: OlympicService) {}
+  constructor(private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics()
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
       filter(value => Array.isArray(value))
     ).subscribe(value =>{      
       this.formatedOlympics = value.map((olympic) => {
+        this.olympics.push(olympic)
         return {name:olympic.country, value: olympic.participations.length}
       })
     })
@@ -61,8 +63,14 @@ export class HomeComponent implements OnInit {
   }
 
 
-  onSelect(data:any): void {
-   // console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  onSelect(data:ChartPie): void {
+    for( let i in this.olympics){
+      if(this.olympics[i].country == data.name){
+        this.country = this.olympics[i]
+      }
+      this.router.navigateByUrl('details')
+    }
+    
   }
 
   onActivate(data:any): void {
