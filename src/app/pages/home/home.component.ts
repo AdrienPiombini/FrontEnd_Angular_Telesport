@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Observable, Subject, filter, interval, map, of } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { Participation } from 'src/app/core/models/Participation';
@@ -7,12 +7,15 @@ import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { ChartOptions } from 'chart.js';
 import { ChartPie } from 'src/app/core/models/ChartPie';
 import { Router } from '@angular/router';
+import { drag } from 'd3';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
+
+
 export class HomeComponent implements OnInit {
 
   public olympics$: Observable<Olympic[]> = of([]);
@@ -45,32 +48,28 @@ export class HomeComponent implements OnInit {
   constructor(private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympics()
+    this.olympics$ = this.olympicService.getOlympicsAsObservable()
     this.olympics$.pipe(
       filter(value => Array.isArray(value))
     ).subscribe(value =>{      
       this.formatedOlympics = value.map((olympic) => {
         this.olympics.push(olympic)
+        this.olympicService.setOlympics(this.olympics)
         return {name:olympic.country, value: olympic.participations.length}
       })
     })
   }
 
 
-  select(country:Olympic){
-    this.country = country
-    this.participation = country.participations    
-  }
-
 
   onSelect(data:ChartPie): void {
     for( let i in this.olympics){
       if(this.olympics[i].country == data.name){
         this.country = this.olympics[i]
+        this.olympicService.setOlympic(this.olympics[i])
       }
-      this.router.navigateByUrl('details')
+      this.router.navigateByUrl(`details/${data.name}`)
     }
-    
   }
 
   onActivate(data:any): void {

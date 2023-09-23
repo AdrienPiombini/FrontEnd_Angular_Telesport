@@ -1,10 +1,6 @@
 
 <hr/>
-<ul>
-    <li *ngFor = "let country of olympics$ | async"  (click)="select(country)" >
-       {{country.country}}
-    </li>
-</ul>
+
 <div *ngIf = "country">
     <p>id : {{country.id}} </p>
     <p>name : {{country.country}} </p> 

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: NotFoundComponent,
   },
   {
-    path:'details',
+    path:'details/:olympic',
     component:DetailsOlympicComponent
   }
 ];
