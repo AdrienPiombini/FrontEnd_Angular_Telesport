@@ -45,25 +45,24 @@ export class DetailsOlympicComponent {
     name: 'Customer Usage', 
 };
 
-  public olympics$: Observable<Olympic[]> = of([]);
-  public formatedOlympicsChartPie: ChartPie[] = [];
+
+
   public formatedOlympics: ChartLine[] = [];
   public olympicsMedals!: OlympicsMedals[];
-  public olympicName!:string;
-  public tableauOlympic:Olympic[]  = [];
+  public olympicId!:number;
   public totalParticipation!:number;
-  public totalMedals:number = 0
-  public totalAthletes: number = 0
+  public totalMedals!:number;
+  public totalAthletes!: number;
 
  
   constructor(private olympicService: OlympicService, private route:ActivatedRoute){}
   
   ngOnInit(): void {
-    this.olympicName = this.route.snapshot.params['olympic']
+    this.olympicId = +this.route.snapshot.params['id']
     this.olympicService.getOlympicsAsObservable().subscribe(
       olympics =>{
         const olympic = olympics.find((olympic:any) =>  {
-          return olympic.country == this.olympicName
+          return olympic.id == this.olympicId
         })
 
         this.olympicsMedals = olympic.participations.map((participations:any) => {
