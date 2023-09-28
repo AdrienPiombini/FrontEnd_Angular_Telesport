@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+/* Style pour le conteneur h3 */
+h3 {
+    font-size: 36px; /* Même taille de police que le h2 du header */
+    color: #6a9ec6; /* Même couleur de texte que le h2 du header */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 2px; /* Espacement entre les lettres */
+    margin-bottom: 10px; /* Marge inférieure */
+    text-align: center; 
+  }
+  
+  /* Style pour la table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style pour les cellules de la table */
+  td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  /* Style pour la première ligne (titres) */
+  tr:first-child {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* Style pour les cellules de données */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style pour les cellules de données impaires */
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  /* Style pour centrer le graphique */
+.graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espacement entre le tableau et le graphique */
+}
+
+/* Style pour le bouton */
+button {
+  background-color: #6a9ec6; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte */
+  padding: 12px 24px; /* Espacement interne (haut/bas, gauche/droite) */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur de la souris en forme de main */
+  text-decoration: none; /* Suppression du soulignement du texte */
+  font-weight: bold; /* Police en gras */
+  transition: background-color 0.3s; /* Transition de couleur au survol */
+}
+
+/* Style au survol du bouton */
+button:hover {
+  background-color: #4a7b9d; /* Couleur de fond au survol */
+}
+
+/* Style lorsque le bouton est actif (sélectionné) */
+button:active {
+  background-color: #3e6787; /* Couleur de fond active */
+}

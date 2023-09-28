@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
    this.olympicService.loadInitialData().pipe(take(1)).subscribe();
-
   }
 
 }

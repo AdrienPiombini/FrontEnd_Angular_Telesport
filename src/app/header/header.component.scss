@@ -1,0 +1,27 @@
+/* Style pour le conteneur principal */
+/* Style pour le conteneur principal */
+.header {
+    display: flex;
+    align-items: center; /* Centre verticalement le contenu */
+    padding: 10px; /* Espacement intérieur */
+    border: none; /* Suppression de la bordure */
+    margin: 0; /* Suppression des marges par défaut */
+  }
+  
+
+/* Style pour le titre */
+
+  
+ /* Style pour le titre */
+.header h2 {
+    font-size: 36px; /* Taille de la police */
+    color: #6a9ec6; /* Couleur du texte */
+    text-transform: uppercase; /* Texte en majuscules */
+    letter-spacing: 2px; /* Espacement entre les lettres */
+    margin-left: 0; /* Décalage à droite en utilisant une marge automatique */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre du texte */
+  }
+  
+  img{
+    margin-left: auto;
+  }

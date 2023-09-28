@@ -7,7 +7,7 @@ import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { ChartOptions } from 'chart.js';
 import { ChartPie } from 'src/app/core/models/ChartPie';
 import { Router } from '@angular/router';
-import { drag } from 'd3';
+import { drag, timeYear } from 'd3';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
   public formatedOlympics: ChartPie[] = []
   public country!: Olympic;
   public participation!: Participation[]
-  
+  public numberOfJoSince2012: number = 3
+
   view: [number, number] = [800, 500];
   colorScheme: Color = { 
     domain: ['#647c8a',
@@ -48,19 +49,24 @@ export class HomeComponent implements OnInit {
   constructor(private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympicsAsObservable()
+     this.olympics$ = this.olympicService.getOlympicsAsObservable()
     this.olympics$.pipe(
       filter(value => Array.isArray(value))
     ).subscribe(value =>{      
       this.formatedOlympics = value.map((olympic) => {
         this.olympics.push(olympic)
-        this.olympicService.setOlympics(this.olympics)
         return {name:olympic.country, value: olympic.participations.length}
       })
-    })
+    }) 
+   
+    this.numberOfJoSince2012 = this.calculateNumberOfJOSince2012()
   }
 
 
+  calculateNumberOfJOSince2012():number{
+    const date = new Date();
+    return Math.floor((date.getFullYear() - 2012)/4) + 1
+  }
 
   onSelect(data:ChartPie): void {
     for( let i in this.olympics){

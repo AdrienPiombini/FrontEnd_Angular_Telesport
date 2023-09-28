@@ -10,13 +10,14 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path:'details/:olympic',
+    component:DetailsOlympicComponent,
+    // fallback vers une url par default 
+  },
+  {
     path: '*', // wildcard
     component: NotFoundComponent,
   },
-  {
-    path:'details/:olympic',
-    component:DetailsOlympicComponent
-  }
 ];
 
 @NgModule({

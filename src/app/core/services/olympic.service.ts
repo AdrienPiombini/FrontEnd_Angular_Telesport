@@ -20,6 +20,7 @@ export class OlympicService {
   constructor(private http: HttpClient) {}
 
   loadInitialData() {
+    console.log('LOAD INITIAL DATA');
     return this.http.get<any>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
@@ -36,6 +37,16 @@ export class OlympicService {
     return this.olympics$.asObservable()
   }
 
+  getOlympic(){
+    return this.olympic
+  }
+
+  setOlympic(country:Olympic){
+    this.olympic =  country
+  }
+
+
+/*
   getOlympics(){
     return this.olympics
   }
@@ -52,14 +63,6 @@ export class OlympicService {
       }
     }
   }
-
-  getOlympic(){
-    return this.olympic
-  }
-
-  setOlympic(country:Olympic){
-    this.olympic =  country
-  }
-
+  */
 
 }

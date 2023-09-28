@@ -1,11 +1,22 @@
-<p>details-olympic works!</p>
-<button routerLink="" routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}">Come Back home</button>
-<br>
-<p>{{olympicName}}</p>
-<p>Nombre total de participations : {{totalParticipation}}</p>
-<p>Nombre total de medailles : {{totalMedals}}</p>
-<p>Nombre total d'athlètes : {{totalAthletes}}</p>
 
+<br>
+<button routerLink="" routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}">Come Back Home</button>
+<h3>{{olympicName}}</h3>
+<table>
+  <tr>
+    <td>Nombre total de participations</td>
+    <td>Nombre total de medailles</td>
+    <td>Nombre total d'athlètes</td>
+  </tr>
+  <tr>
+    <td>{{totalParticipation}}</td>
+    <td>{{totalMedals}}</td>
+    <td>{{totalAthletes}}</td>
+  </tr>
+</table>
+
+
+<div class="graph">
 <ngx-charts-line-chart
   [view]="view"
   [scheme]="colorScheme"
@@ -19,3 +30,4 @@
   [results]="formatedOlympics"
   >
 </ngx-charts-line-chart>
+</div>
