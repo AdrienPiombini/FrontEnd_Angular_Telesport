@@ -71,10 +71,8 @@ export class HomeComponent implements OnInit {
   onSelect(data:ChartPie): void {
     for( let i in this.olympics){
       if(this.olympics[i].country == data.name){
-        this.country = this.olympics[i]
-        this.olympicService.setOlympic(this.olympics[i])
       }
-      this.router.navigateByUrl(`details/${data.name}`)
+      this.router.navigateByUrl(`details/${this.olympics[i].id}`)
     }
   }
 

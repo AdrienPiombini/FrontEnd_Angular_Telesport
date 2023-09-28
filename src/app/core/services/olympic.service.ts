@@ -20,7 +20,6 @@ export class OlympicService {
   constructor(private http: HttpClient) {}
 
   loadInitialData() {
-    console.log('LOAD INITIAL DATA');
     return this.http.get<any>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {

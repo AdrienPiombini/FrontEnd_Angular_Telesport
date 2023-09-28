@@ -10,7 +10,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path:'details/:olympic',
+    path:'details/:id',
     component:DetailsOlympicComponent,
     // fallback vers une url par default 
   },
