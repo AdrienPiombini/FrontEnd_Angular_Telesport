@@ -15,7 +15,7 @@ const routes: Routes = [
     // fallback vers une url par default 
   },
   {
-    path: '*', // wildcard
+    path: '**', // wildcard
     component: NotFoundComponent,
   },
 ];

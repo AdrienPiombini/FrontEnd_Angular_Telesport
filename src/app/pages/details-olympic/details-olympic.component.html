@@ -1,7 +1,8 @@
+<div *ngIf="olympic">
 
-<br>
 <button routerLink="" routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}">Come Back Home</button>
-<h3>{{olympicId}}</h3>
+
+<h3>{{olympic.country}}</h3>
 <table>
   <tr>
     <td>Nombre total de participations</td>
@@ -30,4 +31,9 @@
   [results]="formatedOlympics"
   >
 </ngx-charts-line-chart>
+</div>
+</div>
+
+<div *ngIf ="!olympic">
+  <app-not-found></app-not-found>
 </div>
