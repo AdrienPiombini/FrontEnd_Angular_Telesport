@@ -65,7 +65,6 @@ export class DetailsOlympicComponent {
         })
 
         //this.olympicName = olympic.country;
-        console.log(this.olympic)
         this.olympicsMedals = this.olympic.participations.map((participations:any) => {
           this.totalMedals += participations.medalsCount
           this.totalAthletes += participations.athleteCount
