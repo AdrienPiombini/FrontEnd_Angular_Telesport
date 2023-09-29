@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
-import { Observable, filter, of, partition } from 'rxjs';
+
 import { Olympic } from 'src/app/core/models/Olympic';
 import { ChartLine } from 'src/app/core/models/ChartLine';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { OlympicsMedals } from 'src/app/core/models/OlympicsMedals';
 import { ActivatedRoute } from '@angular/router';
-import { ChartPie } from 'src/app/core/models/ChartPie';
+
 
 @Component({
   selector: 'app-details-olympic',
-  templateUrl: './details-olympic.component.html',
+  templateUrl: './details-olympic.component.html', 
   styleUrls: ['./details-olympic.component.scss']
 })
 export class DetailsOlympicComponent {
-  public country!:Olympic
 
   view: [number, number] = [700, 300];
-
-
 
   legend: boolean = false;
   showLabels: boolean = true;
@@ -49,10 +46,12 @@ export class DetailsOlympicComponent {
 
   public formatedOlympics: ChartLine[] = [];
   public olympicsMedals!: OlympicsMedals[];
-  public olympicId!:number;
+  public olympicId: number = 0;
+  public olympicName!: string;
   public totalParticipation!:number;
-  public totalMedals!:number;
-  public totalAthletes!: number;
+  public totalMedals:number = 0
+  public totalAthletes: number = 0
+  public olympic!: Olympic;
 
  
   constructor(private olympicService: OlympicService, private route:ActivatedRoute){}
@@ -61,17 +60,19 @@ export class DetailsOlympicComponent {
     this.olympicId = +this.route.snapshot.params['id']
     this.olympicService.getOlympicsAsObservable().subscribe(
       olympics =>{
-        const olympic = olympics.find((olympic:any) =>  {
-          return olympic.id == this.olympicId
+        this.olympic = olympics.find((olympic:Olympic) =>  {
+           return  olympic.id == this.olympicId 
         })
 
-        this.olympicsMedals = olympic.participations.map((participations:any) => {
+        //this.olympicName = olympic.country;
+        console.log(this.olympic)
+        this.olympicsMedals = this.olympic.participations.map((participations:any) => {
           this.totalMedals += participations.medalsCount
           this.totalAthletes += participations.athleteCount
           return {name:participations.year, value:participations.medalsCount}
         })
-        this.totalParticipation = olympic.participations.length
-        this.formatedOlympics = [{name:olympic.country, series:this.olympicsMedals}]
+        this.totalParticipation = this.olympic.participations.length
+        this.formatedOlympics = [{name:this.olympic.country, series:this.olympicsMedals}]
       }
     )
   }
