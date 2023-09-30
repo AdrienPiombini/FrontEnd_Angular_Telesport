@@ -12,31 +12,17 @@
 </table>
 
 
-<div *ngIf = "country">
-    <p>id : {{country.id}} </p>
-    <p>name : {{country.country}} </p> 
-    <p *ngFor = "let participation of country.participations">  
-         id: {{participation.id}} ,
-         year: {{participation.year}},
-         city: {{participation.city}},
-         medalsCount: {{participation.medalsCount}},
-         athleteCount: {{participation.athleteCount}}  
-        </p>
-</div> 
-
 <div class="graph">
 <ngx-charts-pie-chart
-  [view]="view"
-  [scheme]="colorScheme"
+  [view]="chartGraphService.view"
+  [scheme]="chartGraphService.colorScheme"
   [results]="formatedOlympics"
-  [gradient]="gradient"
-  [legend]="showLegend"
-  [legendPosition]="legendPosition"
-  [labels]="showLabels"
-  [doughnut]="isDoughnut"
+  [gradient]="chartGraphService.gradient"
+  [legend]="chartGraphService.showLegend"
+  [legendPosition]="chartGraphService.legendPosition"
+  [labels]="chartGraphService.showLabels"
+  [doughnut]="chartGraphService.isDoughnut"
   (select)="onSelect($event)"
-  (activate)="onActivate($event)"
-  (deactivate)="onDeactivate($event)"
   >
 </ngx-charts-pie-chart>
 </div>
