@@ -8,6 +8,7 @@ import { ChartOptions } from 'chart.js';
 import { ChartPie } from 'src/app/core/models/ChartPie';
 import { Router } from '@angular/router';
 import { drag, timeYear } from 'd3';
+import { ChartGraphService } from 'src/app/core/services/chartGraph.service';
 
 @Component({
   selector: 'app-home',
@@ -18,38 +19,15 @@ import { drag, timeYear } from 'd3';
 
 export class HomeComponent implements OnInit {
 
-  public olympics$: Observable<Olympic[]> = of([]);
-  public olympics: Olympic[] = []
-  public formatedOlympics: ChartPie[] = []
-  public country!: Olympic;
-  public participation!: Participation[]
-  public numberOfJoSince2012: number = 3
+  olympics$: Observable<Olympic[]> = of([]);
+  olympics: Olympic[] = []
+  formatedOlympics: ChartPie[] = []
+  numberOfJoSince2012: number = 3
 
-  view: [number, number] = [800, 500];
-  colorScheme: Color = { 
-    domain: ['#647c8a',
-      '#3f51b5',
-      '#2196f3',
-      '#00b862',
-      '#afdf0a',
-      '#a7b61a',
-      '#f3e562',
-    ], 
-    group: ScaleType.Ordinal, 
-    selectable: true, 
-    name: 'Customer Usage', 
-};
-
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  legendPosition: LegendPosition = LegendPosition.Below;
-
-  constructor(private olympicService: OlympicService, private router: Router) {}
+  constructor(private olympicService: OlympicService, private router: Router, public chartGraphService: ChartGraphService) {}
 
   ngOnInit(): void {
-     this.olympics$ = this.olympicService.getOlympicsAsObservable()
+    this.olympics$ = this.olympicService.getOlympicsAsObservable()
     this.olympics$.pipe(
       filter(value => Array.isArray(value))
     ).subscribe(value =>{      
@@ -62,25 +40,16 @@ export class HomeComponent implements OnInit {
     this.numberOfJoSince2012 = this.calculateNumberOfJOSince2012()
   }
 
-
   calculateNumberOfJOSince2012():number{
     const date = new Date();
     return Math.floor((date.getFullYear() - 2012)/4) + 1
   }
 
   onSelect(data:ChartPie): void {
-    for( let i in this.olympics){
-      if(this.olympics[i].country == data.name){
-      }
-      this.router.navigateByUrl(`details/${this.olympics[i].id}`)
-    }
+    this.olympics.find((olympic:Olympic) => {
+      olympic.country == data.name
+      this.router.navigateByUrl(`details/${olympic.id}`)
+    })
   }
 
-  onActivate(data:any): void {
-   // console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data:any): void {
-    //console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
 }

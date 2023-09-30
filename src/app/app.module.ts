@@ -11,12 +11,13 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgChartsModule } from 'ng2-charts';
 import { DetailsOlympicComponent } from './pages/details-olympic/details-olympic.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ChartGraphService } from './core/services/chartGraph.service';
 
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailsOlympicComponent, HeaderComponent,],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule, BrowserAnimationsModule, NgChartsModule],
-  providers: [],
+  providers: [ChartGraphService],
   bootstrap: [AppComponent],
 })
 

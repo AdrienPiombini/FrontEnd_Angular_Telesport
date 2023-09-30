@@ -1,6 +1,6 @@
-import { OlympicsMedals } from "./OlympicsMedals";
+import { FormatedParticipation } from "./FormatedParticipation";
 
 export interface ChartLine {
     name: string;
-    series: OlympicsMedals[];
+    series: FormatedParticipation[];
 }
