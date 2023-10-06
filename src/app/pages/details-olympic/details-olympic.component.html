@@ -4,21 +4,20 @@
   <h3>{{olympic.country}}</h3>
   <table>
     <tr>
-      <td>Nombre total de participations</td>
-      <td>Nombre total de medailles</td>
-      <td>Nombre total d'athlètes</td>
+      <td>Total number of participations</td>
+      <td>Total number of medals</td>
+      <td>Total number of athletes</td>
     </tr>
     <tr>
-      <td>{{totalParticipation}}</td>
+      <td>{{totalParticipations}}</td>
       <td>{{totalMedals}}</td>
       <td>{{totalAthletes}}</td>
     </tr>
   </table>
 
-  
-
   <div class="graph">
     <ngx-charts-line-chart
+      (window:resize)="chartGraphService.onResize($event)"
       [view]="chartGraphService.view"
       [scheme]="chartGraphService.colorScheme"
       [showXAxisLabel]="chartGraphService.showXAxisLabel"

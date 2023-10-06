@@ -2,7 +2,7 @@
 <h3>Medals per country </h3>
 <table>
   <tr>
-    <td>Number of JOs</td>
+    <td>Number of JOs since 2012</td>
     <td>Number of countries</td>
   </tr>
   <tr>
@@ -14,6 +14,7 @@
 
 <div class="graph">
 <ngx-charts-pie-chart
+  (window:resize)="chartGraphService.onResize($event)"
   [view]="chartGraphService.view"
   [scheme]="chartGraphService.colorScheme"
   [results]="formatedOlympics"

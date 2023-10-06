@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         this.olympics.push(olympic)
         return {name:olympic.country, value: olympic.participations.length}
       })
-    }) 
+    })
    
     this.numberOfJoSince2012 = this.calculateNumberOfJOSince2012()
   }
@@ -51,5 +51,5 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl(`details/${olympic.id}`)
     })
   }
-
+ 
 }
