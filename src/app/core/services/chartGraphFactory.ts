@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
 import { Color, LegendPosition, ScaleType } from "@swimlane/ngx-charts";
 
 
-@Injectable()
-export class ChartGraphService {
+export class ChartGraphFactory {
+    constructor(){}
+    
   view: [number, number] = [700, 400];
   legend: boolean = false;
   showLabels: boolean = true;

@@ -1,5 +1,5 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { Observable, Subject, filter, interval, map, of } from 'rxjs';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject, Subscription, filter, interval, map, of } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { Participation } from 'src/app/core/models/Participation';
 import { OlympicService } from 'src/app/core/services/olympic.service';
@@ -7,8 +7,7 @@ import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { ChartOptions } from 'chart.js';
 import { ChartPie } from 'src/app/core/models/ChartPie';
 import { Router } from '@angular/router';
-import { drag, timeYear } from 'd3';
-import { ChartGraphService } from 'src/app/core/services/chartGraph.service';
+import { ChartGraphFactory } from 'src/app/core/services/chartGraphFactory';
 
 @Component({
   selector: 'app-home',
@@ -17,18 +16,26 @@ import { ChartGraphService } from 'src/app/core/services/chartGraph.service';
 })
 
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   olympics$: Observable<Olympic[]> = of([]);
   olympics: Olympic[] = []
   formatedOlympics: ChartPie[] = []
   numberOfJoSince2012: number = 3
+  olympicSubscription!:Subscription;
+  chartGraphFactory: ChartGraphFactory;
+  
+  constructor(private olympicService: OlympicService, private router: Router) {
+    this.chartGraphFactory = new ChartGraphFactory();
+  }
 
-  constructor(private olympicService: OlympicService, private router: Router, public chartGraphService: ChartGraphService) {}
+  ngOnDestroy(): void {
+    this.olympicSubscription.unsubscribe()
+  }
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympicsAsObservable()
-    this.olympics$.pipe(
+    this.olympicSubscription = this.olympics$.pipe(
       filter(value => Array.isArray(value))
     ).subscribe(value =>{      
       this.formatedOlympics = value.map((olympic) => {

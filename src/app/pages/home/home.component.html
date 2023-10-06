@@ -14,15 +14,15 @@
 
 <div class="graph">
 <ngx-charts-pie-chart
-  (window:resize)="chartGraphService.onResize($event)"
-  [view]="chartGraphService.view"
-  [scheme]="chartGraphService.colorScheme"
+  (window:resize)="chartGraphFactory.onResize($event)"
+  [view]="chartGraphFactory.view"
+  [scheme]="chartGraphFactory.colorScheme"
   [results]="formatedOlympics"
-  [gradient]="chartGraphService.gradient"
-  [legend]="chartGraphService.showLegend"
-  [legendPosition]="chartGraphService.legendPosition"
-  [labels]="chartGraphService.showLabels"
-  [doughnut]="chartGraphService.isDoughnut"
+  [gradient]="chartGraphFactory.gradient"
+  [legend]="chartGraphFactory.showLegend"
+  [legendPosition]="chartGraphFactory.legendPosition"
+  [labels]="chartGraphFactory.showLabels"
+  [doughnut]="chartGraphFactory.isDoughnut"
   (select)="onSelect($event)"
   >
 </ngx-charts-pie-chart>
