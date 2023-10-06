@@ -1,4 +1,3 @@
-
 import { Participation } from "./Participation";
 
 export  interface Olympic

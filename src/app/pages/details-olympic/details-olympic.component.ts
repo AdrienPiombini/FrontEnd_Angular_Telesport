@@ -20,7 +20,7 @@ export class DetailsOlympicComponent {
   formatedOlympics: ChartLine[] = [];
   formatedParticipation!: FormatedParticipation[];
   olympicId: number = 0;
-  totalParticipation: number = 0
+  totalParticipations: number = 0
   totalMedals: number = 0
   totalAthletes: number = 0
   olympic: Olympic | undefined;
@@ -41,7 +41,7 @@ export class DetailsOlympicComponent {
           this.formatedParticipation = this.retrieveFormatedParticipation(participations)
           this.totalAthletes = this.retrieveTotalNumberOfAthletes(participations)
           this.totalMedals = this.retrieveTotalNumberOfMedals(participations)
-          this.totalParticipation = participations.length
+          this.totalParticipations = participations.length
           this.formatedOlympics = [{name:this.olympic.country, series:this.formatedParticipation}]
         }
       }

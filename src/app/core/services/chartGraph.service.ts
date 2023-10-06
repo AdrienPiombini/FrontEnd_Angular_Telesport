@@ -4,7 +4,6 @@ import { Color, LegendPosition, ScaleType } from "@swimlane/ngx-charts";
 
 @Injectable()
 export class ChartGraphService {
-    
   view: [number, number] = [700, 400];
   legend: boolean = false;
   showLabels: boolean = true;
@@ -34,4 +33,9 @@ export class ChartGraphService {
     selectable: true, 
     name: 'Customer Usage', 
 };
+
+onResize(event:any){
+  this.view = [event.target.innerWidth / 1.35, 400]
+}
+
 }
