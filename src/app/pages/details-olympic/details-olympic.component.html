@@ -17,22 +17,22 @@
 
   <div class="graph">
     <ngx-charts-line-chart
-      (window:resize)="chartGraphService.onResize($event)"
-      [view]="chartGraphService.view"
-      [scheme]="chartGraphService.colorScheme"
-      [showXAxisLabel]="chartGraphService.showXAxisLabel"
-      [showYAxisLabel]="chartGraphService.showYAxisLabel"
-      [xAxis]="chartGraphService.xAxis"
-      [yAxis]="chartGraphService.yAxis"
-      [xAxisLabel]="chartGraphService.xAxisLabel"
-      [yAxisLabel]="chartGraphService.yAxisLabel"
-      [timeline]="chartGraphService.timeline"
+      (window:resize)="chartGraphFactory.onResize($event)"
+      [view]="chartGraphFactory.view"
+      [scheme]="chartGraphFactory.colorScheme"
+      [showXAxisLabel]="chartGraphFactory.showXAxisLabel"
+      [showYAxisLabel]="chartGraphFactory.showYAxisLabel"
+      [xAxis]="chartGraphFactory.xAxis"
+      [yAxis]="chartGraphFactory.yAxis"
+      [xAxisLabel]="chartGraphFactory.xAxisLabel"
+      [yAxisLabel]="chartGraphFactory.yAxisLabel"
+      [timeline]="chartGraphFactory.timeline"
       [results]="formatedOlympics"
       >
     </ngx-charts-line-chart>
   </div>
 </div>
 
-<div *ngIf ="!olympic">
+<!-- <div *ngIf ="!olympic">
   <app-not-found></app-not-found>
-</div>
+</div> -->

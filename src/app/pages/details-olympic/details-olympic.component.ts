@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 import { Olympic } from 'src/app/core/models/Olympic';
 import { ChartLine } from 'src/app/core/models/ChartLine';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { FormatedParticipation } from 'src/app/core/models/FormatedParticipation';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Participation } from 'src/app/core/models/Participation';
-import { ChartGraphService } from 'src/app/core/services/chartGraph.service';
+import { Subscription } from 'rxjs';
+import { ChartGraphFactory } from 'src/app/core/services/chartGraphFactory';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ChartGraphService } from 'src/app/core/services/chartGraph.service';
   templateUrl: './details-olympic.component.html', 
   styleUrls: ['./details-olympic.component.scss']
 })
-export class DetailsOlympicComponent {
+export class DetailsOlympicComponent implements OnInit, OnDestroy{
 
   formatedOlympics: ChartLine[] = [];
   formatedParticipation!: FormatedParticipation[];
@@ -24,14 +25,20 @@ export class DetailsOlympicComponent {
   totalMedals: number = 0
   totalAthletes: number = 0
   olympic: Olympic | undefined;
+  olympicSubscription!:Subscription;
+  chartGraphFactory:ChartGraphFactory
 
-  constructor(private olympicService: OlympicService, private route:ActivatedRoute, public chartGraphService: ChartGraphService){
+  constructor(private olympicService: OlympicService, private route:ActivatedRoute, private router:Router){
+    this.chartGraphFactory =  new ChartGraphFactory()
+  }
+
+  ngOnDestroy(): void {
+    this.olympicSubscription.unsubscribe()
   }
   
   ngOnInit(): void {
     this.olympicId = +this.route.snapshot.params['id']
-
-    this.olympicService.getOlympicsAsObservable().subscribe(
+    this.olympicSubscription = this.olympicService.getOlympicsAsObservable().subscribe(
       olympics =>{
         this.olympic = olympics.find((olympic:Olympic) =>  {
            return  olympic.id == this.olympicId 
@@ -71,6 +78,8 @@ export class DetailsOlympicComponent {
     }) 
     return totalNumberOfMedals ;
   }
+
+
   
 }
 

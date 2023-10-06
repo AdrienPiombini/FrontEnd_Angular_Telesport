@@ -6,19 +6,21 @@ import { DetailsOlympicComponent } from './pages/details-olympic/details-olympic
 
 const routes: Routes = [
   {
-    path:'details/:id',
-    component:DetailsOlympicComponent,
-    // fallback vers une url par default 
+    path: 'details/:id',
+    component: DetailsOlympicComponent,
   },
   {
     path: 'home',
     component: HomeComponent,
   },
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'prefix' },
+  { path: '', redirectTo: '/home', pathMatch: 'prefix' },
   {
-    path: '**', // wildcard
+    path: '**',
+    redirectTo: '/notFound',
+    pathMatch: 'full',
+  },
+  {
+    path: 'notFound',
     component: NotFoundComponent,
   },
 ];
