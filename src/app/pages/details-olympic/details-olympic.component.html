@@ -1,20 +1,8 @@
 <div *ngIf="olympic">
-  <button routerLink="" routerLinkActive="active" [routerLinkActiveOptions] = "{exact: true}">Come Back Home</button>
-
-  <h3>{{olympic.country}}</h3>
-  <table>
-    <tr>
-      <td>Total number of participations</td>
-      <td>Total number of medals</td>
-      <td>Total number of athletes</td>
-    </tr>
-    <tr>
-      <td>{{totalParticipations}}</td>
-      <td>{{totalMedals}}</td>
-      <td>{{totalAthletes}}</td>
-    </tr>
-  </table>
-
+  <app-details-olympic-component
+    [participations]="participations"
+    [countryName]="olympic.country"
+  ></app-details-olympic-component>
   <div class="graph">
     <ngx-charts-line-chart
       (window:resize)="chartGraphFactory.onResize($event)"
@@ -28,11 +16,11 @@
       [yAxisLabel]="chartGraphFactory.yAxisLabel"
       [timeline]="chartGraphFactory.timeline"
       [results]="formatedOlympics"
-      >
+    >
     </ngx-charts-line-chart>
   </div>
 </div>
 
-<!-- <div *ngIf ="!olympic">
+<div *ngIf="!olympic">
   <app-not-found></app-not-found>
-</div> -->
+</div>

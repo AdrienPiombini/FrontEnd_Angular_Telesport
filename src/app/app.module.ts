@@ -12,11 +12,12 @@ import { NgChartsModule } from 'ng2-charts';
 import { DetailsOlympicComponent } from './pages/details-olympic/details-olympic.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DetailsOlympicComponentComponent } from './components/details-olympic-component/details-olympic-component.component';
+import { HomeComponentComponent } from './components/home-component/home-component.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailsOlympicComponent, HeaderComponent, DetailsOlympicComponentComponent,],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, DetailsOlympicComponent, HeaderComponent, DetailsOlympicComponentComponent, HomeComponentComponent,],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule, BrowserAnimationsModule, NgChartsModule],
   bootstrap: [AppComponent],
 })
