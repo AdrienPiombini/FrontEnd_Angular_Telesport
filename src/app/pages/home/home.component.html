@@ -1,29 +1,19 @@
-
-<h3>Medals per country </h3>
-<table>
-  <tr>
-    <td>Number of Olympics Game since 2012</td>
-    <td>Number of countries</td>
-  </tr>
-  <tr>
-    <td>{{numberOfJoSince2012}}</td>
-    <td> {{olympics.length}}</td>
-  </tr>
-</table>
-
+<app-home-component
+  [numberOfOlympic]="olympics.length"
+></app-home-component>
 
 <div class="graph">
-<ngx-charts-pie-chart
-  (window:resize)="chartGraphFactory.onResize($event)"
-  [view]="chartGraphFactory.view"
-  [scheme]="chartGraphFactory.colorScheme"
-  [results]="formatedOlympics"
-  [gradient]="chartGraphFactory.gradient"
-  [legend]="chartGraphFactory.showLegend"
-  [legendPosition]="chartGraphFactory.legendPosition"
-  [labels]="chartGraphFactory.showLabels"
-  [doughnut]="chartGraphFactory.isDoughnut"
-  (select)="onSelect($event)"
+  <ngx-charts-pie-chart
+    (window:resize)="chartGraphFactory.onResize($event)"
+    [view]="chartGraphFactory.view"
+    [scheme]="chartGraphFactory.colorScheme"
+    [results]="formatedOlympics"
+    [gradient]="chartGraphFactory.gradient"
+    [legend]="chartGraphFactory.showLegend"
+    [legendPosition]="chartGraphFactory.legendPosition"
+    [labels]="chartGraphFactory.showLabels"
+    [doughnut]="chartGraphFactory.isDoughnut"
+    (select)="onSelect($event)"
   >
-</ngx-charts-pie-chart>
+  </ngx-charts-pie-chart>
 </div>

@@ -1,1 +1,20 @@
-<p>details-olympic-component works!</p>
+<button
+routerLink=""
+routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }"
+>
+Come Back Home
+</button>
+<h3>{{countryName}}</h3>
+<table>
+  <tr>
+    <td>Total number of participations</td>
+    <td>Total number of medals</td>
+    <td>Total number of athletes</td>
+  </tr>
+  <tr>
+    <td>{{participations.length}}</td>
+    <td>{{retrieveTotalNumberOfMedals(participations)}}</td>
+    <td>{{retrieveTotalNumberOfAthletes(participations)}}</td>
+  </tr>
+</table>
