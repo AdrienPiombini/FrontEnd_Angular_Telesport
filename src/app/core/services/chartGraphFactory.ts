@@ -16,7 +16,7 @@ export class ChartGraphFactory {
   yAxisLabel: string = 'Medals';
   timeline: boolean = true;
   gradient: boolean = true;
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: LegendPosition = LegendPosition.Below;
 

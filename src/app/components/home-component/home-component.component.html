@@ -1,4 +1,4 @@
-
+<div *ngIf = "numberOfOlympic !== 0" >
 <h3>Medals per country </h3>
 <table>
   <tr>
@@ -10,3 +10,8 @@
     <td> {{numberOfOlympic}}</td>
   </tr>
 </table>
+</div>
+
+<div class="error-message" [ngClass]="{'hidden': numberOfOlympic !== 0}">
+  Sorry, the server encountered a problem.
+</div>

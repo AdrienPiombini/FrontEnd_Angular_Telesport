@@ -5,6 +5,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 import { ChartPie } from 'src/app/core/models/ChartPie';
 import { Router } from '@angular/router';
 import { ChartGraphFactory } from 'src/app/core/services/chartGraphFactory';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-home',

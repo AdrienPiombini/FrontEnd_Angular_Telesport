@@ -10,10 +10,9 @@ const routes: Routes = [
     component: DetailsOlympicComponent,
   },
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
-  { path: '', redirectTo: '/home', pathMatch: 'prefix' },
   {
     path: '**',
     redirectTo: '/notFound',
