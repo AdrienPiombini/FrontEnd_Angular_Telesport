@@ -43,9 +43,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSelect(data: ChartPie): void {
-    this.olympics.find((olympic: Olympic) => {
-      olympic.country == data.name;
+    const olympic = this.olympics.find((olympic: Olympic) => olympic.country === data.name);
+    if (olympic) {
       this.router.navigateByUrl(`details/${olympic.id}`);
-    });
+    }
   }
 }
